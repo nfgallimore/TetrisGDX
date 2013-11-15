@@ -5,24 +5,15 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Random;
 import java.util.prefs.Preferences;
-import org.newdawn.slick.AppGameContainer;
+import javax.swing.JFrame;
 
-import org.newdawn.slick.BasicGame;
-import org.newdawn.slick.Game;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.Music;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.UnicodeFont;
-import org.newdawn.slick.font.effects.ColorEffect;
-import org.newdawn.slick.openal.Audio;
+
 
 /**
  * The {@code Tetris} class is responsible for handling much of the game logic
  * and reading user input.
  */
-public class Tetris extends BasicGame implements KeyListener
+public class Tetris extends JFrame
 {
 
     /**
@@ -141,9 +132,9 @@ public class Tetris extends BasicGame implements KeyListener
      * Images
      ********************************************************/
     
-    private Image playerImage;
-    private Image enemyImage;
-    private Image background;
+//    private Image playerImage;
+//    private Image enemyImage;
+//    private Image background;
 
     
     
@@ -152,7 +143,7 @@ public class Tetris extends BasicGame implements KeyListener
      * Game Object 
      ********************************************************/
     
-    private Game game;
+//    private Game game;
 
     
     
@@ -218,7 +209,7 @@ public class Tetris extends BasicGame implements KeyListener
      ********************************************************/
     
     // Preferences to store high score
-    private final Preferences prefs;
+//    private final Preferences prefs;
             
     // Key for high score for preferences
     private final String highScoreKey = "highscore";
@@ -231,7 +222,7 @@ public class Tetris extends BasicGame implements KeyListener
      ********************************************************/
     
     // Font to use
-    UnicodeFont font;
+//    UnicodeFont font;
 
     // Title for main menu
     private final static String title = "Avoid Game";
@@ -257,10 +248,10 @@ public class Tetris extends BasicGame implements KeyListener
     /********************************************************
      * Audio and sounds
      ********************************************************/
-    private Audio laserfx;
-    private Music bgmusic;
-    
-    
+//    private Audio laserfx;
+//    private Music bgmusic;
+//    
+//    
     /**
      * Creates a new Tetris instance. Sets up the window's properties, and adds
      * a controller listener.
@@ -276,52 +267,52 @@ public class Tetris extends BasicGame implements KeyListener
         super(title);
         mouse = (leap) ? false : true;
         diagnostics = diagnose;
-    }
     
-    @Override
-    public void init(GameContainer gc) throws SlickException
-    {
-        // Load font (used to center the text)
-        font = new UnicodeFont("fonts/font.ttf", 44, false, false);
-        font.addAsciiGlyphs();
-        font.getEffects().add(new ColorEffect());
-        font.loadGlyphs();
-
-        // Load the sprite images
-        playerImage = new Image("res/jet.png");
-        spacebackground = new Image("res/spacebackground.png");
-        enemyImage = new Image("res/enemy.png");
-
-        // Set the dimensions of the internal representation of planes
-        enemyWidth = enemyImage.getWidth();
-        enemyHeight = enemyImage.getHeight();
-        playerWidth = playerImage.getWidth();
-        playerHeight = playerImage.getHeight();
-
-        // Player
-        playerX = SCREEN_W / 2 - playerWidth / 2;
-        playerY = SCREEN_H - 1.5f * playerHeight;
-        // create a new player plane object
-        player = new Plane(playerX, playerY, playerWidth, playerHeight, -1,
-                false);
-
-        // Game object for enemy planes
-        game = new Game(level, enemyWidth, enemyHeight);
-
-        // Initialize text
-        highScoreMessage = "High Score: " + prefs.getInt(highScoreKey, 0);
-        inGameOptions = " Score: 0 <Space> for Pause";
-        countdownTime = "3";
-
-        // Update text width
-        highScoreMessageWidth = font.getWidth(highScoreMessage);
-        inGameOptionsWidth = font.getWidth(inGameOptions);
-        pausedMessageWidth = font.getWidth(pausedMessage);
-        startFromMenuWidth = font.getWidth(startFromMenu);
-        countdownTimeWidth = font.getWidth(countdownTime);
-        titleWidth = font.getWidth(title);
-
-    }
+    
+//    @Override
+//    public void init(GameContainer gc) throws SlickException
+//    {
+//        // Load font (used to center the text)
+//        font = new UnicodeFont("fonts/font.ttf", 44, false, false);
+//        font.addAsciiGlyphs();
+//        font.getEffects().add(new ColorEffect());
+//        font.loadGlyphs();
+//
+//        // Load the sprite images
+//        playerImage = new Image("res/jet.png");
+//        spacebackground = new Image("res/spacebackground.png");
+//        enemyImage = new Image("res/enemy.png");
+//
+//        // Set the dimensions of the internal representation of planes
+//        enemyWidth = enemyImage.getWidth();
+//        enemyHeight = enemyImage.getHeight();
+//        playerWidth = playerImage.getWidth();
+//        playerHeight = playerImage.getHeight();
+//
+//        // Player
+//        playerX = SCREEN_W / 2 - playerWidth / 2;
+//        playerY = SCREEN_H - 1.5f * playerHeight;
+//        // create a new player plane object
+//        player = new Plane(playerX, playerY, playerWidth, playerHeight, -1,
+//                false);
+//
+//        // Game object for enemy planes
+//        game = new Game(level, enemyWidth, enemyHeight);
+//
+//        // Initialize text
+//        highScoreMessage = "High Score: " + prefs.getInt(highScoreKey, 0);
+//        inGameOptions = " Score: 0 <Space> for Pause";
+//        countdownTime = "3";
+//
+//        // Update text width
+//        highScoreMessageWidth = font.getWidth(highScoreMessage);
+//        inGameOptionsWidth = font.getWidth(inGameOptions);
+//        pausedMessageWidth = font.getWidth(pausedMessage);
+//        startFromMenuWidth = font.getWidth(startFromMenu);
+//        countdownTimeWidth = font.getWidth(countdownTime);
+//        titleWidth = font.getWidth(title);
+//
+//    }
 //        setLayout(new BorderLayout());
 //        setDefaultCloseOperation(EXIT_ON_CLOSE);
 //        setResizable(false);
@@ -331,36 +322,36 @@ public class Tetris extends BasicGame implements KeyListener
          */
         this.board = new BoardPanel(this);
         this.side = new SidePanel(this);
-
-    @Override
-    public void keyPressed(KeyEvent e)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void render(GameContainer gc, Graphics grphcs) throws SlickException
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void update(GameContainer gc, int i) throws SlickException
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+//    @Override
+//    public void keyPressed(KeyEvent e)
+//    {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    @Override
+//    public void keyReleased(KeyEvent e)
+//    {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    @Override
+//    public void keyTyped(KeyEvent e)
+//    {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    @Override
+//    public void render(GameContainer gc, Graphics grphcs) throws SlickException
+//    {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    @Override
+//    public void update(GameContainer gc, int i) throws SlickException
+//    {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 
         /*
          * Add the BoardPanel and SidePanel instances to the window.
@@ -500,42 +491,6 @@ public class Tetris extends BasicGame implements KeyListener
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
-    }
-
-    @Override
-    public void init(GameContainer gc) throws SlickException
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void render(GameContainer gc, Graphics grphcs) throws SlickException
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void update(GameContainer gc, int i) throws SlickException
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -879,15 +834,15 @@ public class Tetris extends BasicGame implements KeyListener
      *
      * @param args Unused.
      */
-    public static void main(String[] args) throws SlickException
+    public static void main(String[] args)
     {
-        AppGameContainer app = new AppGameContainer(new Tetris("Tetris",
-                false, false));
-        app.setDisplayMode(1280, 768, false);
-        // don't show the diagnostic FPS
-        app.setShowFPS(false);
+        Tetris app = new Tetris("Tetris",
+                false, false);
+//        app.setDisplayMode(1280, 768, false);
+//        // don't show the diagnostic FPS
+//        app.setShowFPS(false);
         // launch the game
-        app.start();
+        app.startGame();
     }
 
 }
